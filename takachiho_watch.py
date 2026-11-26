@@ -76,9 +76,10 @@ def scrape() -> dict:
                 page.screenshot(path=f"debug_week{i}.png", full_page=True)
             for ev in page.evaluate(JS_COLLECT):
                 slots[f"{ev['date']} {ev['text']}"] = not any(m in ev["text"] for m in SOLD_MARKS)
-next_btn = page.locator(".fc-next-button:visible").first
+            next_btn = page.locator(".fc-next-button:visible").first
             if next_btn.count() > 0:
-                next_btn.click(timeout=5000)        b.close()
+                next_btn.click(timeout=5000)
+        b.close()
     return slots
 
 
